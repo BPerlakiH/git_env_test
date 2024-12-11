@@ -23,7 +23,7 @@ jobs:
       - name: Show the tag variable
         run: 
           |
-          echo "found tag new: ${{ steps.vars.outputs.tag }}"
+          echo "found new tag: ${{ steps.vars.outputs.tag }}"
 
       - name: Validate tag
         run:
