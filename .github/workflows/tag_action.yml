@@ -10,7 +10,11 @@ jobs:
   publish:
     runs-on: macos-13
     environment: 
-        name: internal
+        name: |-
+            ${{
+                ${${GITHUB_REF#refs/*/}%_*} == 'testapp' && 'testapp'
+                || 'internal'
+            }}
 
     steps:
       - name: Checkout code
