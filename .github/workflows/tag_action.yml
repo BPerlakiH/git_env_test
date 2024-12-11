@@ -10,7 +10,7 @@ jobs:
   publish:
     runs-on: macos-13
     environment:
-        name: ${ contains(${GITHUB_REF#refs/*/}, 'testapp') && 'testapp' || 'internal' }
+        name: ${{ contains(${GITHUB_REF#refs/*/}, 'testapp') && 'testapp' || 'internal' }}
 
     steps:
       - name: Checkout code
