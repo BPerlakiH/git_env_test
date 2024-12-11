@@ -7,10 +7,11 @@ on:
       - main
 
 jobs:
-  publish:
+  publish_testapp:
+    if: ${{ contains(github.ref, 'testapp') }}
     runs-on: macos-13
     environment:
-        name: ${{ contains(${GITHUB_REF#refs/*/}, 'testapp') && 'testapp' || 'internal' }}
+        name: 'testapp'
 
     steps:
       - name: Checkout code
