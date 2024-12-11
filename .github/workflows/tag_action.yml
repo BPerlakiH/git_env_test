@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-13
     environment:
         name: |-
-          ${${GITHUB_REF#refs/*/}%_*} == 'testapp' && 'testapp'
+          contains(${GITHUB_REF#refs/*/}, 'testapp') && 'testapp'
           || 'internal'
 
     steps:
@@ -26,7 +26,7 @@ jobs:
       - name: Show the pattern matched ref value
         run:
          |
-         echo ${${GITHUB_REF#refs/*/}%_*}
+         echo ${GITHUB_REF#refs/*/}
       
       - name: Set tag variable as an output
         id: vars
