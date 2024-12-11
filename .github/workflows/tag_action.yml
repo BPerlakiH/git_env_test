@@ -9,6 +9,8 @@ on:
 jobs:
   publish:
     runs-on: macos-13
+    environment: 
+        name: internal
 
     steps:
       - name: Checkout code
@@ -29,3 +31,8 @@ jobs:
         run:
           |
           python .github/workflows/tag_validator.py ${{ steps.vars.outputs.tag }}
+
+      - name: Show which environment it is
+        run:
+          | 
+          echo "the current environment is: ${{ env.ENV_NAME }}"
