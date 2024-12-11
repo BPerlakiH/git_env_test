@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Show the full github ref value
+        run:
+         |
+         echo "${GITHUB_REF}"
       
       - name: Set tag variable as an output
         id: vars
