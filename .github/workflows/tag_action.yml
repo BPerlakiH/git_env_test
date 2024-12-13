@@ -8,11 +8,8 @@ on:
 
 jobs:
   publish_testapp:
-    if: ${{ contains(github.ref, 'testapp') }}
     runs-on: macos-13
-    environment:
-        name: 'testapp'
-
+    environment: ${{ contains(github.ref, 'testapp') && 'testapp' || 'internal' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -44,6 +41,8 @@ jobs:
           python .github/workflows/tag_validator.py ${{ steps.vars.outputs.tag }}
 
       - name: Show which environment it is
+        env:
+            ENV_NAME: ${{ vars.ENV_NAME }}
         run:
           | 
-          echo "the current environment is: ${{ env.ENV_NAME }}"
+          echo "the current environment is: ${{ vars.ENV_NAME }}"
